@@ -1,10 +1,6 @@
 #include </home/rnagasak/myproject/bril_histogram/components/bril_histogram/software/src/BrilHistogram.cpp>
-#include <iostream>
+//#include <iostream>
 #include <vector>
-#include <stdlib.h>
-#include <iterator>
-#include <bitset>
-#include <cstdlib>
 #include <math.h>
 
 class DummyHistogramGenerator {

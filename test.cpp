@@ -1,4 +1,4 @@
-#include </home/rnagasak/myproject/Data_Generate/GenerateDummyHistogram.cpp>
+#include </home/rnagasak/myproject/Data_Generate/DummyHistogramGenerator.cpp>
 #include <iostream>
 #include <vector>
 
