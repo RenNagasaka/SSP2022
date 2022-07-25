@@ -1,4 +1,4 @@
-#include </home/rnagasak/myproject/bril_histogram/components/bril_histogram/software/src/BrilHistogram.cpp>
+#include <BrilHistogram.cpp>
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -39,7 +39,7 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
     result.push_back((0xFF << 24) | (HEADER_SIZE << 16) | (TOTAL_PACKAGE_SIZE << 0));
     result.push_back((HISTOGRAM_TYPE << 26) | (HISTOGRAM_ID << 16) | (N_BINS << 0));
     result.push_back((COUNTER_WIDTH << 24) | (INCREMENT_WIDTH << 16) | (N_COUNTER_WORDS << 0));
-    result.push_back((Counter_Overflow << 32) | (Increment_Overflow << 31) | (0 << 20) | (ORBIT_COUNTER << 0));
+    result.push_back((Counter_Overflow << 31) | (Increment_Overflow << 30) | (0 << 20) | (ORBIT_COUNTER << 0));
     result.push_back((LHC_Fill << 0));
     result.push_back((CMS_Run_Number << 0));
     result.push_back((Lumi_Section << 0));
