@@ -34,6 +34,6 @@ When you want to see the output of test.cpp,
 - Go to the lib folder
   > `your_project_folder/SSP2022/software/lib`
 - Run
-  > `./test.cpp`
+  > `./test.out`
 
 You can see some header values and this means dummy data foramt matching with BrilHistogram class.  
