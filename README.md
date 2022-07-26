@@ -7,20 +7,9 @@ This code is generating dummy data macthing BRIL histogram format. For now, the 
 
 ## Folder Structure
 |-- bril_histogram - ```submodule is contained here```
-|-- lib - ```output files are delivered here```
-|--``````
-|       `-- firmware
-|           |-- ucf - ```timing constraints for the BrilHistogram IP```
-|           |-- sim - ```core functionality simulation```
-|           |-- hdl - ```IP HDL code```
-|           `-- cfg - ```IPbus Builder dependency files```
-|   `-- injector - ```injector code that implements testbench
-	|-- software - ```python scripts used to test the functionality of the module```
-        `-- firmware - ```testbench firmware code```
-`-- boards - ```code for various platforms```
-    `-- fc7 - ```fc7 based testbench```
-    `-- aldec_hes - ```aldec_hes based testbench```        
-
+`-- software- ```C++ library to generate dummy data```
+    |-- lib -```output file is delivered here```
+    '-- src -```C++ code is here```
 
 ## How to compile
 
