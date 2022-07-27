@@ -1,0 +1,3 @@
+[submodule "bril_histogram"]
+	path = bril_histogram
+	url = https://gitlab.cern.ch/bril-phase2/bril_histogram.git
