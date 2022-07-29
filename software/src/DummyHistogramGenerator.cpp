@@ -1,17 +1,7 @@
-#include <BrilHistogram.cpp>
+#include "../include/DummyHistogramGenerator.h"
 #include <iostream>
 #include <vector>
 #include <math.h>
-
-class DummyHistogramGenerator {
-
-public:
-  std::vector<uint32_t> generate_headers();
-  std::vector<uint32_t> generate_counters_random();
-  std::vector<uint32_t> generate_counters_single_bin();
-  std::vector<uint32_t> Random();
-  std::vector<uint32_t> SingleBin();
-};
 
   //generate headers
 std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
