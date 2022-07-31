@@ -53,16 +53,15 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_counters_random () {
     return counters;
   }
   // generate counter payload at single bin
-std::vector<uint32_t> DummyHistogramGenerator::generate_counters_single_bin () {
+std::vector<uint32_t> DummyHistogramGenerator::generate_counters_single_bin (int bin_id) {
     std::vector<uint32_t> counters;
     int N_bunch = 3564;
-    int N = rand()%(N_bunch+1);
 
     for (int i=0; i<N_bunch/2+1; ++i)
       {
-        if (i == N/2)
+        if (i == bin_id/2)
           {
-            if (N%2 == 0)
+            if (bin_id%2 == 0)
               {
                 counters.push_back((0 << 16) | (1 << 0));
               }
@@ -88,8 +87,8 @@ std::vector<uint32_t> DummyHistogramGenerator::Random(){
     return result;
   }
   // combine headers and single bin counter payload
-std::vector<uint32_t> DummyHistogramGenerator::SingleBin(){
-    std::vector<uint32_t> counters = generate_counters_single_bin();
+std::vector<uint32_t> DummyHistogramGenerator::SingleBin(int bin_id=rand()%(3564+1)){
+    std::vector<uint32_t> counters = generate_counters_single_bin(bin_id);
     std::vector<uint32_t> result = generate_headers();
 
     result.insert(result.end(), counters.begin(), counters.end());

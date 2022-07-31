@@ -5,7 +5,7 @@
 int main(){
   
   DummyHistogramGenerator *mydata;
-  std::vector<uint32_t> data = mydata->Random();
+  std::vector<uint32_t> data = mydata->SingleBin();
 
   BrilHistogram *myHist = new BrilHistogram (data);
 
