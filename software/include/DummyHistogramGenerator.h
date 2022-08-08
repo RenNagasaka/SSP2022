@@ -10,5 +10,8 @@ class DummyHistogramGenerator {
   std::vector<uint32_t> generate_counters_single_bin(int bin_id);
   std::vector<uint32_t> Random();
   std::vector<uint32_t> SingleBin(int bin_id);
+  std::vector<uint32_t> generate_albedo(std::vector<uint32_t> vector, double a,double b,int n);
+  std::vector<uint32_t> Random_albedo(double a, double b, int n);
+  std::vector<uint32_t> SingleBin_albedo(double a, double b, int n, int bin_id);
 };
 

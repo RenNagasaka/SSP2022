@@ -1,13 +1,15 @@
 #include "DummyHistogramGenerator.cpp"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 int main(){
   
   DummyHistogramGenerator *mydata;
-  std::vector<uint32_t> data = mydata->SingleBin();
-
-  BrilHistogram *myHist = new BrilHistogram (data);
+  std::vector<uint32_t> data1 = mydata->SingleBin_albedo(0.1, 1, 30);
+  std::vector<uint32_t> data2 = mydata->SingleBin();
+ 
+  BrilHistogram *myHist = new BrilHistogram (data2);
 
   std::cout << "NwordsTotal = " << (uint16_t) myHist->GetNwordsTotal() << std::endl;
   std::cout << "HeaderSize = " << (int) myHist->GetHeaderSize() << std::endl;

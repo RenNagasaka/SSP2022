@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <algorithm>
 
   //generate headers
 std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
@@ -9,7 +10,7 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
     uint8_t HEADER_SIZE = 9;
     uint16_t HISTOGRAM_TYPE = rand()%64;
     uint16_t HISTOGRAM_ID = rand()%1024;
-    uint16_t N_BINS = 3564;
+    uint16_t N_BINS = 3654;
     uint8_t INCREMENT_WIDTH = 1;
     uint8_t COUNTER_WIDTH = 100;
     uint16_t N_COUNTER_WORDS = rand()%65536;
@@ -75,6 +76,14 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_counters_single_bin (int
             counters.push_back((0 << 16) | (0 << 0));
           }
       }
+
+    //implement albedo
+
+    for (int i=0; i<N_bunch/2+1; i++)
+      {
+
+
+}
     return counters;
   }
 
@@ -94,4 +103,51 @@ std::vector<uint32_t> DummyHistogramGenerator::SingleBin(int bin_id=rand()%(3564
     result.insert(result.end(), counters.begin(), counters.end());
     return result;
   }
+// generate albedo vector
 
+std::vector<uint32_t> DummyHistogramGenerator::generate_albedo(std::vector<uint32_t> vector, double a, double b, int n)
+{
+  int N_bunch = 3654;
+  std::vector<uint32_t> vector_albedo;
+  uint32_t bin1;
+  uint32_t bin2;
+  uint32_t x1;
+  uint32_t x2;
+
+  for (int i=0; i<N_bunch/2+1; ++i)
+    {
+      for (int j=0; j<n/2+1; ++j)
+	{
+	  x1 = (vector[(N_bunch/2-i-j-1)%(N_bunch/2)] >> 16) && (0x00FF);
+	  x2 = (vector[(N_bunch/2-i-j-1)%(N_bunch/2)] >> 0) && (0x00FF);
+	  bin1 = x1*a*exp(-b*(2*j)) + x2*a*exp(-b*(2*j+1));
+	  
+          x1 = (vector[(N_bunch/2-i-j)%(N_bunch/2)] >> 0) && (0x00FF);
+	  x2 = (vector[(N_bunch/2-i-j-1)%(N_bunch/2)] >> 16) && (0x00FF);
+	  bin2 = x1*a*exp(-b*(2*j)) + x2*a*exp(-b*(2*j+1));
+
+	  vector_albedo.push_back((bin2 << 16) | (bin1 << 0));
+	} 
+    }
+}
+
+  // combine headers and random counter payload with albedo
+std::vector<uint32_t> DummyHistogramGenerator::Random_albedo(double a, double b, int n){                                     
+    std::vector<uint32_t> counters = generate_counters_random();
+    std::vector<uint32_t> result = generate_headers();
+    std::vector<uint32_t> albedo = generate_albedo(counters, a, b, n);
+
+    std::transform(counters.begin(), counters.end(), albedo.begin(), counters.begin(), std::plus<uint32_t>());
+    result.insert(result.end(), counters.begin(), counters.end());
+    return result;
+  }
+  // combine headers and single bin counter payload with albedo
+std::vector<uint32_t> DummyHistogramGenerator::SingleBin_albedo(double a, double b, int n, int bin_id=rand()%(3564+1)){
+    std::vector<uint32_t> counters = generate_counters_single_bin(bin_id);
+    std::vector<uint32_t> result = generate_headers();
+    std::vector<uint32_t> albedo = generate_albedo(counters, a, b, n);
+
+    std::transform(counters.begin(), counters.end(), albedo.begin(), counters.begin(), std::plus<uint32_t>());
+    result.insert(result.end(), counters.begin(), counters.end());
+    return result;
+  }
