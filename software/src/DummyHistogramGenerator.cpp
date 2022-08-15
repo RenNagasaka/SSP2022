@@ -109,10 +109,10 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_albedo(std::vector<uint3
 {
   int N_bunch = 3654;
   std::vector<uint32_t> vector_albedo;
-  uint32_t bin1;
-  uint32_t bin2;
-  uint32_t x1;
-  uint32_t x2;
+  uint16_t bin1;
+  uint16_t bin2;
+  uint16_t x1;
+  uint16_t x2;
 
   for (int i=0; i<N_bunch/2+1; ++i)
     {
@@ -129,6 +129,8 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_albedo(std::vector<uint3
 	  vector_albedo.push_back((bin2 << 16) | (bin1 << 0));
 	} 
     }
+
+  return vector_albedo;
 }
 
   // combine headers and random counter payload with albedo

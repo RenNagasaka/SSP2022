@@ -6,11 +6,10 @@
 int main(){
   
   DummyHistogramGenerator *mydata;
-  std::vector<uint32_t> data = mydata->SingleBin();
-  DummyHistogramGenerator *myalbedo;
-  std::vector<uint32_t> albedo = myalbedo->SingleBin_albedo(0.1, 1, 30);
-  
-  BrilHistogram *myHist = new BrilHistogram (data);
+  std::vector<uint32_t> data1 = mydata->SingleBin_albedo(0.1, 1, 30);
+  std::vector<uint32_t> data2 = mydata->SingleBin();
+ 
+  BrilHistogram *myHist = new BrilHistogram (data2);
 
   std::cout << "NwordsTotal = " << (uint16_t) myHist->GetNwordsTotal() << std::endl;
   std::cout << "HeaderSize = " << (int) myHist->GetHeaderSize() << std::endl;
@@ -30,16 +29,6 @@ int main(){
   std::cout << "CounterOverflow = " << (bool) myHist->GetCounterOverflow() << std::endl;
   std::cout << "IncrementOverflow = " << (bool) myHist->GetIncrementOverflow() << std::endl;
   std::cout << "NmaskErrorWords = " << (uint16_t) myHist->GetNmaskErrorWords() << std::endl;
-
-  for (int i=0; i<albedo.size(); ++i)
-    {
-      std::cout << albedo[i] << ",";
-    }
-
-for (int i=0; i<data.size(); ++i)
-    {
-      std::cout << data[i] << ",";
-    }
 
   return 0;
 }
