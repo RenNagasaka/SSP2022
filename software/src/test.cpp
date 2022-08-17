@@ -2,14 +2,16 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <math.h>
 
 int main(){
   
-  DummyHistogramGenerator *mydata;
-  std::vector<uint32_t> data = mydata->SingleBin();
   DummyHistogramGenerator *myalbedo;
-  std::vector<uint32_t> albedo = myalbedo->SingleBin_albedo(0.1, 1, 30);
-  
+  std::vector<uint32_t> data = myalbedo->SingleBin_albedo(0.1, 0.1, 30, 0, 1000);
+
+  // DummyHistogramGenerator *mydata;
+  // std::vector<uint32_t> data = mydata->Random_albedo(0.1, 0.1, 30);
+
   BrilHistogram *myHist = new BrilHistogram (data);
 
   std::cout << "NwordsTotal = " << (uint16_t) myHist->GetNwordsTotal() << std::endl;
@@ -31,15 +33,12 @@ int main(){
   std::cout << "IncrementOverflow = " << (bool) myHist->GetIncrementOverflow() << std::endl;
   std::cout << "NmaskErrorWords = " << (uint16_t) myHist->GetNmaskErrorWords() << std::endl;
 
-  for (int i=0; i<albedo.size(); ++i)
-    {
-      std::cout << albedo[i] << ",";
-    }
-
+std::cout << "===== counter payload =====" << std::endl;
 for (int i=0; i<data.size(); ++i)
     {
       std::cout << data[i] << ",";
     }
+std::cout << "" << std::endl;
 
   return 0;
 }
