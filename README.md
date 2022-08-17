@@ -9,7 +9,8 @@ This code is generating dummy data macthing BRIL histogram format. For now, the 
 ```bash
 |-- bril_histogram - ```submodule is contained here```
 `-- software- ```C++ library to generate dummy data```
-    |-- lib -```output file is delivered here```
+    |-- include -```header file is here```
+    `-- lib -```output file is delivered here```
     `-- src -```C++ code is here```
 ```
 
