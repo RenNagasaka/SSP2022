@@ -2,6 +2,19 @@
 
 This code is generating dummy data macthing BRIL histogram format. For now, the dummy data includes appropriate header, random or single bin counter payload. In this code, we uses "https://gitlab.cern.ch/bril-phase2/bril_histogram.git" as submodule.
 
+Futhermore, I implemented albedo for reproducing real experimental data. Real experimental data is not ideal delta function but has tail. So albedo is represented like following when we have $N_0$ counts for n-th bin.
+```math
+f(x) = \left\{
+\begin{array}{ll}
+N_0 & (x = n) \\
+N_0\times a & (x = n+1)\\
+N_0\times a \times \exp(-bx) & (n+1 < x < n+c)\\
+0 & (n+c-1 < x)
+\end{array}
+\right.
+```
+which f(x) is counts of x-th bins, a, b and c is parameter. I implemented this albedo to both of random and single bin counter payload.
+
 # Table of contents
 [[_TOC_]]
 
