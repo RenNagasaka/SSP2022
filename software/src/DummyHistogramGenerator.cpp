@@ -6,11 +6,11 @@
 
   //generate headers
 std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
-    uint16_t TOTAL_PACKAGE_SIZE = 1836;
+    uint16_t TOTAL_PACKAGE_SIZE = 1791;
     uint8_t HEADER_SIZE = 9;
     uint16_t HISTOGRAM_TYPE = rand()%64;
     uint16_t HISTOGRAM_ID = rand()%1024;
-    uint16_t N_BINS = 3654;
+    uint16_t N_BINS = 3564;
     uint8_t INCREMENT_WIDTH = 1;
     uint8_t COUNTER_WIDTH = 100;
     uint16_t N_COUNTER_WORDS = rand()%65536;
@@ -24,7 +24,7 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
     uint32_t CMS_Run_Number = rand()%(int)pow(2,32);
     uint32_t Lumi_Section = rand()%(int)pow(2,32);
     uint32_t Lumi_Nibble = rand()%(int)pow(2,32);
-    int N_bunch = 3654;
+    int N_bunch = 3564;
     std::vector<uint32_t> result;
 
     result.push_back((0xFF << 24) | (HEADER_SIZE << 16) | (TOTAL_PACKAGE_SIZE << 0));
@@ -42,7 +42,7 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_headers () {
   // generate counter payload at random number ranging [0,200]
 std::vector<uint32_t> DummyHistogramGenerator::generate_counters_random () {
     std::vector<uint32_t> counters;
-    int N_bunch = 3654;
+    int N_bunch = 3564;
 
     for (int i=0; i<N_bunch/2; ++i)
       {
@@ -56,7 +56,7 @@ std::vector<uint32_t> DummyHistogramGenerator::generate_counters_random () {
   // generate counter payload at single bin
 std::vector<uint32_t> DummyHistogramGenerator::generate_counters_single_bin (int bin_id, uint16_t bin_height) {
     std::vector<uint32_t> counters;
-    int N_bunch = 3654;
+    int N_bunch = 3564;
 
     for (int i=0; i<N_bunch/2; ++i)
       {
@@ -99,7 +99,7 @@ std::vector<uint32_t> DummyHistogramGenerator::SingleBin(int bin_id=rand()%(3564
 
 std::vector<uint32_t> DummyHistogramGenerator::generate_albedo(std::vector<uint32_t> vector, double a, double b, int n)
 {
-  int N_bunch = 3654;
+  int N_bunch = 3564;
   std::vector<uint32_t> vector_albedo;
   double bin1;
   double bin2;
